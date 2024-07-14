@@ -1,12 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\QAController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InventoryController;
-use App\Http\Controllers\Admin\QAController;
-use App\Http\Controllers\Admin\UserController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::get('/', function () {
 include 'auth.php';
 
 Route::group(['middleware'=>['web','isAdmin']],function(){
+    Route::get('lang/{lang}', [LanguageController::class, 'changeLanguage'])->name('language.change');
+
     Route::get('admin/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
   //Category Routes
     Route::get('/categories',[CategoryController::class,'index'])->name('categories');

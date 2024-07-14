@@ -62,13 +62,13 @@
         <li class="menu-item {{ request()->routeIs('categories') ? 'active' : '' }}" >
             <a href="{{ route('categories') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Categories</div>
+                <div data-i18n="Basic">{{ __('messages.categories') }}</div>
             </a>
         </li>
         <li class="menu-item {{ request()->routeIs('inventory') ? 'active' : '' }}" >
             <a href="{{ route('inventory') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Inventory</div>
+                <div data-i18n="Basic">{{ __('messages.inventory') }}</div>
             </a>
         </li>
         @can('isAdmin')
@@ -77,7 +77,7 @@
         <li class="menu-item {{ request()->routeIs('users') ? 'active' : '' }}" >
             <a href="{{ route('users') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Users</div>
+                <div data-i18n="Basic">{{ __('messages.users') }}</div>
             </a>
         </li>
         @endcan
