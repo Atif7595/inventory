@@ -55,19 +55,6 @@ Route::group(['middleware'=>['web','isAdmin']],function(){
      Route::post('/update-user',[UserController::class,'update'])->middleware('can:isAdmin');
      Route::post('/delete-user',[UserController::class,'delete'])->middleware('can:isAdmin');
 
-    //import Qa
-    Route::post('/import-qa',[QAController::class,'importQa']);
-
-
-
-
-
-
-
-
-
-
-
 });
 
 

@@ -18,7 +18,8 @@ class Inventory extends Model
         'status',
         'date',
         'category_id',
-        'stock'
+        'stock',
+        'image'
     ];
 
 

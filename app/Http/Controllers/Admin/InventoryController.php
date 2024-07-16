@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Inventory;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class InventoryController extends Controller
 {
@@ -15,7 +16,11 @@ class InventoryController extends Controller
         return view('inventory.index',compact('inventories','categories'));
     }
     public function store(Request $request){
+
+
         try{
+            $filename= time().'-'.$request->image->getClientOriginalName();
+           $file=  $request->image->storeAs('stockImages',$filename,'public');
             Inventory::create([
                 'item_name' => $request->name,
                 'description'=> $request->description,
@@ -26,6 +31,7 @@ class InventoryController extends Controller
                 'date'=> $request->date,
                 'category_id'=> $request->category,
                 'stock'=> $request->stock,
+                'image'=> $file,
             ]);
             return response()->json(['success'=> true,'message'=> 'Stock Added Succesfully']);
           }catch(\Exception $e){
@@ -44,6 +50,13 @@ class InventoryController extends Controller
     }
     public function update(Request $request){
         try{
+            if($request->file('image')){
+                $filename= time().'-'.$request->image->getClientOriginalName();
+                $file=  $request->image->storeAs('stockImages',$filename,'public');
+                Inventory::whereId($request->id)->update([
+                'image'=> $file,
+                ]);
+            }
             Inventory::whereId($request->id)->update([
                 'item_name' => $request->name,
                 'description'=> $request->description,

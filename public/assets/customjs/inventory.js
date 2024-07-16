@@ -1,10 +1,12 @@
 //Add Exam ajax
 $("#addInventory").submit(function(e) {
     e.preventDefault();
-    var formData = $(this).serialize();
+    var formData = new FormData(this);
     const url = window.location.origin + '/add-inventory'
     $.ajax({
         type: "POST",
+        processData: false, // Prevent jQuery from processing the data
+        contentType: false, // Prevent jQuery from setting the content type
         url: url,
         data: formData,
         success: function(response) {
@@ -47,11 +49,13 @@ $(".editStockButton").click(function() {
 });
 $("#editInventory").submit(function(e) {
     e.preventDefault();
-    var formData = $(this).serialize();
+    var formData = new FormData(this);
     const url = window.location.origin + '/edit-inventory';
     $.ajax({
         type: "POST",
         url: url,
+         processData: false, // Prevent jQuery from processing the data
+        contentType: false,
         data: formData,
         success: function(response) {
             if (response.success == true) {
@@ -70,7 +74,7 @@ $(".deleteInventory").click(function() {
 
 $("#deleteInventoryId").submit(function(e) {
     e.preventDefault();
-    var formData = $(this).serialize();
+    var formData = new FormData(this);
     const url = window.location.origin + '/delete-inventory';
     $.ajax({
         type: "POST",

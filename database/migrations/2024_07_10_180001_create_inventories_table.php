@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('status');
             $table->date('date');
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->integer('stock')->default(0);
             $table->timestamps();
         });
