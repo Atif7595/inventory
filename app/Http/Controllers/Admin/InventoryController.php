@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Inventory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class InventoryController extends Controller
@@ -82,5 +83,13 @@ class InventoryController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
 
+       }
+
+       public function download(){
+        $inventoryItems = Inventory::with('category')->get();
+        $user = auth()->user(); // Assuming you are using Laravel's authentication system
+        $totalEstimatedValue = $inventoryItems->sum('price');
+       $pdf=Pdf::loadView('inventory.pdf',compact('inventoryItems','user','totalEstimatedValue'));
+       return $pdf->download('invoice.pdf');
        }
 }

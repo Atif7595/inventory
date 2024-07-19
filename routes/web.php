@@ -46,6 +46,7 @@ Route::group(['middleware'=>['web','isAdmin']],function(){
     Route::get('/get-inventory-data/{id}',[InventoryController::class,'edit'])->name('inventory.edit');
     Route::post('/edit-inventory',[InventoryController::class,'update'])->name('inventory.update');
     Route::post('/delete-inventory',[InventoryController::class,'delete'])->name('inventory.delete');
+    Route::get('/download-inventory',[InventoryController::class,'download'])->name('inventory.download');
 
     //Users Routes
 

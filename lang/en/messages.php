@@ -57,6 +57,7 @@ return [
     'Are You Sure You Want to delete This User' => 'Are You Sure You Want to delete This User',
     'Users' => 'Users',
     'Action' => 'Action',
-    'image'=> 'image'
+    'image'=> 'Image',
+    'download'=> 'Download'
 
 ];

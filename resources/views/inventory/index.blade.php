@@ -14,6 +14,10 @@
                                 @lang('messages.add_item')
                             </button>
 
+                            <a href="{{ route('inventory.download') }}" class="btn btn-sm btn-primary " >
+                            @lang('messages.download')
+                        </a>
+
                             <!-- Add Inventory Modal -->
                             <div class="modal fade" id="addCategoryModel" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
